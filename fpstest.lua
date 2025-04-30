@@ -1,9 +1,9 @@
 local function optimizePerformance()
-    -- Remove textures from parts
     for _, object in pairs(workspace:GetDescendants()) do
         if object:IsA("BasePart") then
-            object.TextureID = "" -- Clears textures
-            object.CastShadow = false -- Disables shadows
+            object.CastShadow = false -- Disables shadows for performance
+        elseif object:IsA("Decal") then
+            object:Destroy() -- Removes decals (textures applied to parts)
         elseif object:IsA("ParticleEmitter") or object:IsA("Beam") or object:IsA("Trail") then
             object.Enabled = false -- Disables visual effects
         end
